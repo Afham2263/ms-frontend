@@ -1,0 +1,117 @@
+/* === General Styles === */
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0b0f19;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* === Hero Section === */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+/* Cinematic gradient animation */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, #4f9cff55, #0b0f19 60%),
+              radial-gradient(ellipse at bottom right, #53f3c355, #0b0f19 60%);
+  animation: floatBG 12s infinite alternate ease-in-out;
+  z-index: 1;
+}
+
+@keyframes floatBG {
+  0% { transform: translate(-20px, -10px) scale(1); }
+  100% { transform: translate(20px, 10px) scale(1.1); }
+}
+
+/* === Hero Content === */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 750px;
+  backdrop-filter: blur(4px);
+  padding: 20px;
+}
+
+.title {
+  font-size: 54px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #4f9cff, #53f3c3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  margin-top: 18px;
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === Buttons === */
+.button-row {
+  margin-top: 32px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #4f9cff, #53f3c3);
+  color: #000;
+  box-shadow: 0 4px 20px rgba(79, 156, 255, 0.4);
+}
+
+.btn.primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn.ghost {
+  border: 2px solid #4f9cff;
+  background: transparent;
+  color: #4f9cff;
+}
+
+.btn.ghost:hover {
+  background: #4f9cff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+
+.btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(1);
+}

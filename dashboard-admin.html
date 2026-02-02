@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin Dashboard — MS Education</title>
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/admin.css?v=final-clean"/>
+
+
+  <!-- Scheduler styles (used later by modal) -->
+  <link rel="stylesheet" href="css/scheduler.css"/>
+</head>
+
+<body>
+
+  <!-- ───────────────── Sidebar ───────────────── -->
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>MS Education</h2>
+      <p class="powered-by">Powered by Clyvo AI</p>
+    </div>
+
+    <nav class="nav">
+      <button data-route="dashboard" class="nav-item active">
+        Dashboard Overview
+      </button>
+      <button data-route="campaigns" class="nav-item">
+        Campaigns
+      </button>
+      <button data-route="announcements" class="nav-item">
+        Announcements
+      </button>
+    </nav>
+
+        <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar" id="userAvatar"></div>
+        <div class="user-meta">
+          <div class="user-email" id="userEmail"></div>
+          <div class="user-role" id="userRole"></div>
+        </div>
+      </div>
+
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+
+  </aside>
+
+  <!-- ───────────────── Main Content ───────────────── -->
+  <main class="main">
+    <header class="topbar">
+  <button
+    id="mobileMenuBtn"
+    class="icon-btn mobile-only"
+    aria-label="Open menu"
+  >
+    ☰
+  </button>
+
+  <div class="breadcrumb" id="breadcrumb">Dashboard</div>
+  <div class="user" id="userInfo">Admin</div>
+</header>
+
+
+    <!-- Router injects views here -->
+    <section class="content" id="contentArea"></section>
+  </main>
+
+  <!-- ───────────────── Dashboard Overview Template ───────────────── -->
+<template id="dashboard-overview-template">
+  <!-- Dashboard-only styles -->
+  <link rel="stylesheet" href="css/dashboard-preview-drawer.css">
+
+  <div class="dashboard">
+
+
+    <!-- ================= Dashboard Header ================= -->
+    <header class="dashboard-header">
+      <div class="dashboard-title">
+        <h1>Dashboard Overview</h1>
+        <p class="dashboard-subtitle">
+          System status, scheduled operations, and platform health
+        </p>
+      </div>
+
+      <!-- Section Navigation (Structural, not decorative) -->
+      <div class="dashboard-nav-wrapper">
+  <nav class="dashboard-nav" aria-label="Dashboard sections">
+    <a
+      href="#platform-status"
+      class="dashboard-tab disabled"
+      aria-disabled="true"
+    >
+      Platform Status
+      <span class="nav-badge">Under Dev</span>
+    </a>
+
+    <a
+      href="#scheduled-announcements"
+      class="dashboard-tab active"
+      aria-current="true"
+    >
+      Scheduled
+    </a>
+
+    <a
+      href="#reports"
+      class="dashboard-tab disabled"
+      aria-disabled="true"
+    >
+      Reports
+      <span class="nav-badge">Under Dev</span>
+    </a>
+  </nav>
+</div>
+
+    </header>
+
+    <!-- ================= Dashboard Content ================= -->
+    <main class="dashboard-content">
+
+      <!-- Platform Status -->
+      <section
+        class="dashboard-card dashboard-status"
+        id="platform-status"
+        aria-labelledby="platform-status-title"
+      >
+        <div class="card-header">
+          <h3 id="platform-status-title">Platform Status</h3>
+          <span class="status-pill status-building">
+            Under Active Development
+          </span>
+        </div>
+
+        <div class="card-body muted">
+
+  <!-- 🔐 WhatsApp System Status (LIVE) -->
+      <div
+        id="whatsappSystemStatus"
+        class="system-status-line"
+      >
+        Checking WhatsApp system status…
+      </div>
+</div>
+
+      </section>
+
+      <!-- Scheduled Announcements -->
+      <section
+        class="dashboard-card"
+        id="scheduled-announcements"
+        aria-labelledby="scheduled-announcements-title"
+      >
+        <div class="card-header">
+  <h3 id="scheduled-announcements-title">
+    Scheduled Announcements
+  </h3>
+
+  <div class="scheduled-footer">
+    <!-- 🔄 NEW REFRESH BUTTON -->
+    <button
+      id="refreshScheduled"
+      class="icon-btn"
+      title="Refresh scheduled announcements"
+      aria-label="Refresh scheduled announcements"
+    >
+      ↻
+    </button>
+
+    <button id="viewAllScheduled" class="link-btn">
+      View all scheduled announcements
+    </button>
+  </div>
+</div>
+
+
+        <div class="card-body">
+
+        <!-- Toolbar -->
+        <div class="scheduled-toolbar">
+          <div class="left">
+            <input
+              type="checkbox"
+              id="selectAllScheduled"
+            />
+
+            <input
+              type="text"
+              id="scheduledSearch"
+              class="scheduled-search"
+              placeholder="Search scheduled announcements…"
+            />
+          </div>
+
+          <button
+            id="bulkDeleteScheduled"
+            class="btn-danger hidden"
+          >
+            Delete
+          </button>
+        </div>
+
+        <!-- List -->
+        <div id="scheduledList" class="scheduled-list"></div>
+
+      </div>
+
+
+      </section>
+
+      <!-- Reports -->
+      <section
+        class="dashboard-card"
+        id="reports"
+        aria-labelledby="reports-title"
+      >
+        <div class="card-header">
+          <h3 id="reports-title">Reports</h3>
+          <span class="status-pill status-building">
+            Under Development
+          </span>
+        </div>
+
+        <div class="card-body muted">
+          Delivery reports, failures, and analytics will appear here.
+        </div>
+      </section>
+
+    </main>
+  </div>
+</template>
+
+
+  <!-- ───────────────── Scripts ───────────────── -->
+
+  <!-- 🔥 CRITICAL: mock-api MUST be NON-MODULE and FIRST -->
+  <script src="js/mock-api.js"></script>
+
+  <!-- Application modules -->
+   <script src="js/mock-api.js"></script>
+
+  <script type="module" src="js/admin-protect.js"></script>
+  <script type="module" src="js/admin-router.js"></script>
+
+</body>
+</html>

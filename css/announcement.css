@@ -1,0 +1,62 @@
+/* css/announcement.css */
+/*
+  ANNOUNCEMENTS — SOURCE OF TRUTH (UI)
+
+  This file intentionally DOES NOT redefine styles.
+
+  It explicitly reuses:
+  - campaign.css  → wizard shell, steps, blue connector, layout, buttons, summary, audience tree
+  - templates.css → template list, preview panel, WhatsApp preview, review & send
+
+  This guarantees pixel-parity with Campaigns.
+*/
+
+/* ─────────────────────────
+   HARD DEPENDENCIES
+   ───────────────────────── */
+
+@import url("./campaign.css");
+@import url("./templates.css");
+
+/* ─────────────────────────
+   SEMANTIC WRAPPER (OPTIONAL)
+   ───────────────────────── */
+
+/*
+  You MAY wrap AnnouncementWizard mount with:
+  <div class="announcement-wizard"></div>
+
+  This enables future customization WITHOUT touching campaign.css
+*/
+
+
+
+/* ─────────────────────────
+   ANNOUNCEMENT-ONLY TEXT SAFETY
+   (does NOT affect layout)
+   ───────────────────────── */
+
+.announcement-wizard .wizard-right .small-muted {
+  font-weight: 600;
+}
+
+/* ─────────────────────────
+   NO OVERRIDES BELOW THIS LINE
+   ───────────────────────── */
+
+/*
+  Wizard shell                → campaign.css
+  Step pills                  → campaign.css
+  Blue progress connector     → campaign.css
+  Left / right panel layout   → campaign.css
+  Buttons                     → campaign.css
+  Summary sidebar             → campaign.css
+  Audience tree styling       → campaign.css
+  Preview disclaimer spacing  → campaign.css
+  Template viewing            → templates.css
+  Hover preview               → templates.css
+  Review & Send               → templates.css
+*/
+
+
+

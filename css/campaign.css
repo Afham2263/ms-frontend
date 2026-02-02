@@ -1,0 +1,593 @@
+/* ───────── WIZARD BASE ───────── */
+
+.wizard {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.wizard-shell {
+  background:white;
+  border-radius:14px;
+  padding:22px;
+  box-shadow:0 10px 30px rgba(12,18,30,0.08);
+}
+
+/* ───────── STEPS (ENTERPRISE) ───────── */
+
+.wizard-steps {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+
+.step-pill {
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+  background:#f1f5ff;
+  color:#64748b;
+  cursor:pointer;
+  transition:all .2s ease;
+  position:relative;
+}
+
+.step-pill.active {
+  background:#056ef0;
+  color:white;
+  box-shadow:0 6px 18px rgba(5,110,240,.35);
+}
+
+.step-pill.completed {
+  background:#e6f0ff;
+  color:#056ef0;
+}
+
+.step-pill.inactive {
+  opacity:.7;
+}
+
+/* ───────── STEP CONNECTOR (PROGRESS LINE) ───────── */
+
+.step-connector {
+  flex:1;
+  height:3px;
+  background:#e5e7eb;
+  margin:0 6px;
+  border-radius:999px;
+  position:relative;
+  overflow:hidden;
+}
+
+.step-connector::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  width:0%;
+  background:linear-gradient(90deg,#056ef0,#3b82f6);
+  transition:width .35s ease;
+  border-radius:999px;
+}
+
+.step-connector.completed::after {
+  width:100%;
+}
+
+/* ───────── BODY ───────── */
+
+.wizard-body {
+  display:flex;
+  gap:20px;
+}
+
+.wizard-left {
+  flex:1 1 60%;
+  min-width:320px;
+}
+
+.wizard-right {
+  flex:0 0 300px;
+}
+
+/* ───────── PANELS ───────── */
+
+.panel {
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 4px 14px rgba(12,18,30,.05);
+}
+
+/* ───────── BUTTONS ───────── */
+
+.btn-row {
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+}
+
+.btn {
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  border:0;
+  cursor:pointer;
+}
+
+.btn.primary {
+  background:#056ef0;
+  color:white;
+}
+
+.btn.primary:hover {
+  background:#0458c8;
+}
+
+.btn.ghost {
+  background:transparent;
+  border:1px solid #e5e7eb;
+  color:#374151;
+}
+
+/* ───────── SUMMARY ───────── */
+
+.summary-list {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.summary-item {
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  background:#f8fafc;
+  border-radius:10px;
+  font-size:14px;
+}
+
+/* ───────── RESPONSIVE ───────── */
+
+@media (max-width:1000px) {
+  .wizard-body {
+    flex-direction:column;
+  }
+  .wizard-right {
+    order:2;
+  }
+}
+
+/* ─────────────────────────────────────────
+   AUDIENCE TREE — FINAL CLEAN ENTERPRISE UI
+   (DEDUPED, SAME LOOK)
+   ───────────────────────────────────────── */
+
+.audience-tree {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-size:15px;
+}
+
+/* Node */
+.aud-node {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px;
+  border-radius:8px;
+  transition:
+    background .2s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.aud-node:hover {
+  background:#f8fafc;
+  transform:translateX(2px);
+}
+
+/* Root */
+.aud-node.aud-root {
+  background:#eef4ff;
+  border:1px solid #dbe7ff;
+  font-weight:700;
+  box-shadow:0 4px 12px rgba(5,110,240,.08);
+}
+
+/* Toggler */
+.aud-toggler {
+  width:18px;
+  height:18px;
+  border-radius:6px;
+  border:none;
+  background:#e5e7eb;
+  color:#374151;
+  font-size:12px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  transition:background .2s ease, transform .15s ease;
+}
+
+.aud-toggler:hover {
+  background:#dbeafe;
+  transform:scale(1.1);
+}
+
+.aud-toggler-leaf {
+  background:transparent;
+  cursor:default;
+  opacity:.4;
+}
+
+/* Checkbox */
+.aud-checkbox {
+  width:14px;
+  height:14px;
+  cursor:pointer;
+  transform:scale(1.05);
+  transition:transform .15s ease;
+}
+
+.aud-checkbox:hover {
+  transform:scale(1.15);
+}
+
+/* Label */
+.aud-label {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  cursor:pointer;
+}
+
+/* Name */
+.aud-name {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.aud-name.parent {
+  font-weight:600;
+  font-size:15px;
+  color:#0f172a;
+}
+
+.aud-name.leaf {
+  font-weight:500;
+  font-size:14.5px;
+  color:#334155;
+}
+
+/* Meta */
+.aud-meta {
+  margin-left:auto;
+  font-size:12px;
+  color:#9ca3af;
+  font-weight:500;
+}
+
+/* Children */
+.aud-children {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  margin-top:2px;
+  transition:opacity .2s ease;
+}
+
+/* Selection */
+.aud-checkbox:checked + .aud-label {
+  background:linear-gradient(90deg,#eef4ff,#f5f9ff);
+  border-radius:6px;
+  padding:4px 6px;
+  box-shadow:inset 0 0 0 1px #dbe7ff;
+  animation:checkPulse .35s ease-out;
+}
+
+/* Skeleton */
+.audience-skeleton {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.audience-skeleton .s-line {
+  height:12px;
+  border-radius:8px;
+  background:linear-gradient(90deg,#f1f5f9,#e5e7eb,#f1f5f9);
+  background-size:200% 100%;
+  animation:skeleton 1.2s infinite linear;
+}
+
+.audience-skeleton .s-line.short {
+  width:60%;
+}
+
+@keyframes skeleton {
+  from { background-position:0% 0%; }
+  to   { background-position:200% 0%; }
+}
+
+@keyframes checkPulse {
+  0%   { box-shadow:0 0 0 0 rgba(5,110,240,.25); }
+  100% { box-shadow:0 0 0 6px rgba(5,110,240,0); }
+}
+
+.preview-disclaimer {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  font-size: 19px;
+  color: #475569;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.45;
+}
+
+.preview-disclaimer .info-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e0edff;
+  color: #056ef0;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+/* Preview disclaimer spacing fix */
+.preview-disclaimer {
+  margin-bottom: 16px;   /* space below disclaimer */
+}
+
+/* If it's directly above the WhatsApp preview bubble */
+.review-preview .wa-bubble,
+.review-preview .preview-media {
+  margin-top: 12px;      /* space above preview content */
+}
+
+/* ───────── VARIABLE HIGHLIGHT IN WHATSAPP PREVIEW ───────── */
+
+.wa-text .wa-var {
+  background: #e6f0ff;
+  color: #056ef0;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wa-text .wa-var.placeholder {
+  background: #f1f5f9;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ───────── VARIABLE INPUTS (ANNOUNCEMENTS) ───────── */
+
+.var-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.var-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dbe7ff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b1740;
+  background: #f8fbff;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.var-input:focus {
+  border-color: #056ef0;
+  box-shadow: 0 0 0 3px rgba(5,110,240,0.15);
+}
+
+/* ───────── ANNOUNCEMENT VARIABLE SECTION ───────── */
+
+.var-section {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+}
+
+.var-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.var-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.var-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.var-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.var-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dbe7ff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b1740;
+  background: white;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.var-input:focus {
+  border-color: #056ef0;
+  box-shadow: 0 0 0 3px rgba(5,110,240,0.15);
+}
+
+.media-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.back-btn {
+  border: none;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #2563eb;
+}
+
+.media-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.media-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.media-search {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  width: 220px;
+}
+
+.media-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.media-delete:hover {
+  opacity: 1;
+}
+
+.trash-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #6b7280;
+  fill: none;
+  stroke-width: 2;
+}
+
+.media-preview-panel {
+  position: fixed;
+  right: 24px;
+  top: 120px;
+  width: 360px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  padding: 16px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.media-preview-panel.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(12px);
+}
+
+.pdf-open-link {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+
+/* REQUIRED for absolute-positioned children */
+.wizard {
+  position: relative;
+}
+
+/* ================================
+   Review Step – Back Button (Enterprise)
+   ================================ */
+
+.wizard-left .review-back-btn {
+  all: unset; /* kill browser defaults */
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: 8px;
+
+  background: #f8fafc;              /* light neutral */
+  border: 1px solid #e5e7eb;         /* subtle outline */
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+/* Icon */
+.wizard-left .review-back-btn .back-icon {
+  font-size: 16px;
+  line-height: 1;
+  color: #2563eb;
+}
+
+/* Hover = blue hint, not aggressive */
+.wizard-left .review-back-btn:hover {
+  background: #eff6ff;               /* blue-50 */
+  border-color: #bfdbfe;             /* blue-200 */
+  color: #1d4ed8;                    /* blue-700 */
+}
+
+/* Hover icon */
+.wizard-left .review-back-btn:hover .back-icon {
+  color: #1d4ed8;
+}
+
+/* Active / click */
+.wizard-left .review-back-btn:active {
+  background: #dbeafe;               /* blue-100 */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+}

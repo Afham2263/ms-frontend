@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MS Education Communication Suite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* --- THE UIVERSE PATTERN INTEGRATION --- */
+    .container {
+      position: absolute;
+      inset: -1em;
+      z-index: 1;
+      overflow: hidden; /* 🔥 required for blur layer */
+      --c: 7px;
+      background-color: #000;
+      background-image: 
+        radial-gradient(circle at 50% 50%, #0000 1.5px, #000 0 var(--c), #0000 var(--c)),
+        radial-gradient(circle at 50% 50%, #0000 1.5px, #000 0 var(--c), #0000 var(--c)),
+        radial-gradient(circle at 50% 50%, #f00, #f000 60%),
+        radial-gradient(circle at 50% 50%, #ff0, #ff00 60%),
+        radial-gradient(circle at 50% 50%, #0f0, #0f00 60%),
+        radial-gradient(ellipse at 50% 50%, #00f, #00f0 60%);
+      
+      background-size:
+        12px 20.7846097px,
+        12px 20.7846097px,
+        200% 200%,
+        200% 200%,
+        200% 200%,
+        200% 20.7846097px;
+      
+      --p: 0px 0px, 6px 10.39230485px;
+      background-position: var(--p), 0% 0%, 0% 0%, 0% 0%, 0% 0px;
+      
+      animation:
+        wee 40s linear infinite,
+        filt 6s linear infinite;
+    }
+   
+    /* --- Seamless Background Blur Layer --- */
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  background: rgba(0, 0, 0, 0.15);
+}
+
+    /* --- HERO CONTENT --- */
+    .hero-inner {
+      position: relative;
+      z-index: 10; /* Ensures text is on top of the background */
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .title { 
+      font-size: clamp(2.5rem, 8vw, 4.5rem); 
+      font-weight: 800; 
+      line-height: 1.1; 
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    }
+
+    .highlight { 
+      background: linear-gradient(to right, #00f2ff, #00ff95);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline { 
+      font-size: 1.2rem; 
+      color: rgba(255, 255, 255, 0.7); 
+      max-width: 600px; 
+      margin: 0 auto 40px; 
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .button-row { display: flex; gap: 15px; justify-content: center; }
+
+    .btn { 
+      padding: 16px 36px; 
+      border-radius: 12px; 
+      text-decoration: none; 
+      font-weight: 700; 
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .primary { 
+      background: #fff; 
+      color: #000; 
+    }
+
+    .primary:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .ghost { 
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* --- ANIMATION LOGIC --- */
+    @keyframes filt {
+      0% { filter: hue-rotate(0deg); }
+      to { filter: hue-rotate(360deg); }
+    }
+
+    @keyframes wee {
+      0% {
+        background-position:
+          var(--p),
+          800% 400%,
+          1000% -400%,
+          -1200% -600%,
+          400% 41.5692194px;
+      }
+      to {
+        background-position:
+          var(--p),
+          0% 0%,
+          0% 0%,
+          0% 0%,
+          0% 0%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="container"></div>
+
+    <div class="hero-inner">
+      <h1 class="title">
+        MS Education<br>
+        <span class="highlight">Communication Suite</span>
+      </h1>
+
+      <p class="tagline">
+        Powered by <strong>Clyvo AI</strong> — Enterprise-grade WhatsApp automation,
+        marketing, and faculty announcements.
+      </p>
+
+      <div class="button-row">
+        <a href="admin-login.html" class="btn primary">Admin Login</a>
+        <button class="btn ghost btn-disabled" disabled>Teacher Login</button>
+      </div>
+    </div>
+  </div>
+
+</body>

@@ -1,0 +1,337 @@
+/* ───────── TEMPLATE LIST ───────── */
+
+.tpl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tpl-row {
+  display: flex;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(12,18,30,0.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.tpl-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(12,18,30,0.1);
+}
+
+/* ───────── MEDIA FRAME (SUBTLE, ENTERPRISE) ───────── */
+
+.tpl-media {
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  padding: 3px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tpl-media img,
+.tpl-media video {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;        /* FIX: no white blobs */
+  border-radius: 8px;
+  background: transparent; /* FIX: remove forced white */
+}
+
+.tpl-media video {
+  pointer-events: none;
+}
+
+.tpl-media-placeholder {
+  width: 96px;
+  height: 72px;
+  border-radius: 8px;
+  background: #e5e7eb;
+}
+
+/* Media icons (documents) */
+.tpl-media.icon {
+  width: 96px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+/* ───────── INFO ───────── */
+
+.tpl-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tpl-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: #0b1740;
+}
+
+.tpl-cat {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #063a7a;
+  width: max-content;
+}
+
+.tpl-text {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ───────── TOOLBAR (SEARCH + FILTER) ───────── */
+
+.tpl-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tpl-search {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.tpl-filter {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+/* ───────── PREVIEW PANEL (HOVER) ───────── */
+
+.tpl-preview-panel {
+  position: fixed;
+  right: 24px;
+  top: 120px;
+  width: 420px;
+  max-height: 70vh;
+  background: #ECE5DD;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  padding: 16px;
+  overflow: auto;
+  z-index: 999;
+}
+
+.tpl-preview-panel.hidden {
+  display: none;
+}
+
+.preview-header {
+  margin-bottom: 12px;
+}
+
+.preview-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.preview-sub {
+  font-size: 13px;
+  color: #475569;
+}
+
+/* ───────── PREVIEW MEDIA ───────── */
+
+.preview-media {
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.preview-media img,
+.preview-media video {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.preview-media video {
+  display: block;
+}
+
+.preview-media.doc {
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+/* ───────── WHATSAPP BUBBLE ───────── */
+
+.wa-bubble {
+  background: #DCF8C6;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.wa-text {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 14px;
+  color: #0b1740;
+}
+
+/* ───────── REVIEW & SEND ───────── */
+
+.review-layout {
+  display: flex;
+  justify-content: center;
+}
+
+.review-preview {
+  width: 100%;
+  max-width: 520px;
+  background: #ECE5DD;
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-media {
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.review-media img,
+.review-media video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.wa-bubble.large {
+  background: #DCF8C6;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+/* ───────── TEXT-ONLY ANNOUNCEMENT TEMPLATES ───────── */
+
+.tpl-row {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left accent strip */
+.tpl-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 4px;
+  background: #e5e7eb;
+}
+
+.tpl-row.marketing::before {
+  background: #f59e0b;
+}
+
+.tpl-row.utility::before {
+  background: #056ef0;
+}
+
+/* Text-only icon box */
+.tpl-media.text-only {
+  width: 96px;
+  height: 72px;
+  border-radius: 10px;
+  background: #f8fafc;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.tpl-icon {
+  line-height: 1;
+}
+
+/* Subtle spacing improvement */
+.tpl-info {
+  gap: 8px;
+}
+
+.tpl-text {
+  color: #64748b;
+}
+
+/* === Template Hover Media Placeholder === */
+
+.tpl-preview-placeholder {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tpl-preview-placeholder.video {
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+  color: #fff;
+}
+
+.tpl-preview-placeholder.image {
+  background: linear-gradient(135deg, #e2e8f0, #f8fafc);
+}
+
+.tpl-preview-placeholder.document {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+}
+
+.tpl-preview-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.tpl-preview-label {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.8;
+}

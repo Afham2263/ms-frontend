@@ -1,0 +1,183 @@
+/* ================================
+   Scheduler Overlay
+   ================================ */
+
+.scheduler-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65); /* deep slate */
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ================================
+   Scheduler Modal (Core)
+   ================================ */
+
+.scheduler-modal {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* ================================
+   Header
+   ================================ */
+
+.scheduler-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.scheduler-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ================================
+   Body
+   ================================ */
+
+.scheduler-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.scheduler-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.scheduler-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: #f9fafb;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+
+.scheduler-field input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+.scheduler-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.scheduler-hint {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ================================
+   Actions
+   ================================ */
+
+.scheduler-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.scheduler-cancel {
+  all: unset;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  background: #f1f5f9;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.scheduler-cancel:hover {
+  background: #e2e8f0;
+}
+
+.scheduler-confirm {
+  all: unset;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.scheduler-confirm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(37, 99, 235, 0.5);
+}
+
+.scheduler-confirm:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+}
+
+
+
+/* ================================
+   Scheduler Input Containment Fix
+   ================================ */
+
+.scheduler-field {
+  position: relative;
+}
+
+.scheduler-field input {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Prevent native date/time UI overflow */
+.scheduler-field input::-webkit-calendar-picker-indicator {
+  margin-right: 2px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* Firefox safety */
+.scheduler-field input[type="date"],
+.scheduler-field input[type="time"] {
+  appearance: none;
+  -moz-appearance: textfield;
+}

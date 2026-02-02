@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin Login — MS Education</title>
+
+   <!-- 🔥 REQUIRED FOR LOADER -->
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      width: 100vw; height: 100vh;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    #starCanvas {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+
+    .auth-container {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 350px;
+      color: white;
+      text-align: center;
+    }
+
+    h2 { margin-bottom: 25px; font-weight: 300; letter-spacing: 1px; }
+
+    form label {
+      display: block; text-align: left;
+      margin-bottom: 15px; font-size: 0.9rem; color: #ccc;
+    }
+
+    input {
+      width: 100%; padding: 12px; margin-top: 5px;
+      border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.3); color: white;
+      box-sizing: border-box; outline: none;
+    }
+
+    .btn {
+      width: 100%; padding: 12px; border: none;
+      border-radius: 6px; cursor: pointer;
+      font-weight: 600; transition: all 0.2s ease;
+    }
+
+    .primary { background: #3498db; color: white; margin-top: 10px; }
+    .primary:hover { background: #2980b9; }
+
+    
+
+    .footnote { margin-top: 20px; font-size: 0.75rem; color: #555; }
+  </style>
+</head>
+
+
+
+<body>
+
+  <body>
+
+  <!-- 🔥 GLOBAL AUTH LOADER (hidden by default) -->
+  <div id="authLoading" class="auth-loading" hidden>
+    <div class="auth-loading-card">
+      <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <canvas id="starCanvas"></canvas>
+
+    <div class="auth-container">
+      <h2>Admin Login</h2>
+
+      <form id="loginForm">
+        <label>Email
+          <input type="email" name="email" required placeholder="admin@ms-edu.com"/>
+        </label>
+        <label>Password
+          <input type="password" name="password" required minlength="6"/>
+        </label>
+
+        <button type="submit" class="btn primary">Login</button>
+      </form>
+
+      
+      <p class="footnote">Powered by Clyvo AI</p>
+    </div>
+  </div>
+
+  <script src="js/mock-api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+
+  <script>
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, stars = [];
+    const starCount = 700;
+    let mouse = { x: -1000, y: -1000 };
+
+    function init() {
+      width = window.innerWidth; 
+      height = window.innerHeight;
+      canvas.width = width; 
+      canvas.height = height;
+      stars = [];
+      for (let i = 0; i < starCount; i++) {
+        const bSize = Math.random() * 1.5;
+        const bOpac = Math.random() * 0.5 + 0.1;
+        stars.push({
+          x: Math.random() * width, 
+          y: Math.random() * height,
+          baseSize: bSize, 
+          size: bSize, 
+          baseOpacity: bOpac, 
+          opacity: bOpac,
+          // Individual speed: larger stars move slightly faster for depth
+          v: (Math.random() * 0.15) + 0.05 
+        });
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('resize', init);
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      for (let s of stars) {
+        let dx = mouse.x - s.x, dy = mouse.y - s.y, dist = Math.sqrt(dx*dx + dy*dy);
+        
+        // Interaction Logic
+        if (dist < 100) {
+          let factor = (100 - dist) / 100;
+          s.size += ((s.baseSize + (factor * 3)) - s.size) * 0.1;
+          s.opacity += ((s.baseOpacity + (factor * 0.8)) - s.opacity) * 0.1;
+        } else {
+          s.size += (s.baseSize - s.size) * 0.05;
+          s.opacity += (s.baseOpacity - s.opacity) * 0.05;
+        }
+
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+        ctx.beginPath(); 
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); 
+        ctx.fill();
+
+        // Apply individual star speed
+        s.y -= s.v;
+
+        // Wrap around loop
+        if (s.y < -5) { 
+          s.y = height + 5; 
+          s.x = Math.random() * width; 
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    init(); draw();
+  </script>
+</body>
+
+
+</html>

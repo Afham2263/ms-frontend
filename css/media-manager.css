@@ -1,0 +1,590 @@
+/* css/media-manager.css */
+
+.media-manager {
+  padding: 16px;
+}
+
+.media-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.media-header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.upload-btn {
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.media-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.media-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: border 0.15s, box-shadow 0.15s;
+  background: #fff;
+}
+
+.media-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.media-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.media-thumb {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.media-meta {
+  font-size: 12px;
+}
+
+.media-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.media-status {
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.media-status.ready { color: #16a34a; }
+.media-status.processing { color: #ca8a04; }
+.media-status.failed { color: #dc2626; }
+
+.media-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.media-delete:hover {
+  color: #dc2626;
+}
+
+.media-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 32px;
+  color: #6b7280;
+}
+
+.media-empty .muted {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.media-list.drag-over {
+  border: 2px dashed #2563eb;
+  background: #eff6ff;
+}
+
+
+/* ===============================
+   MEDIA MANAGER BASE
+================================ */
+
+.media-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.media-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upload-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background: #1e40af;
+}
+
+/* ===============================
+   DROP ZONE (LARGE AREA)
+================================ */
+
+.media-dropzone {
+  min-height: 260px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 16px;
+  transition: all 0.15s ease;
+}
+
+.media-dropzone.drag-over {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+/* ===============================
+   MEDIA GRID
+================================ */
+
+.media-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+/* ===============================
+   MEDIA CARD
+================================ */
+
+.media-card {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.media-card:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.media-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   THUMBNAILS
+================================ */
+
+.media-thumb {
+  height: 120px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.media-thumb img,
+.media-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-icon {
+  font-size: 42px;
+}
+
+/* ===============================
+   META INFO
+================================ */
+
+.media-meta {
+  margin-top: 8px;
+}
+
+.media-name {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.media-status {
+  font-size: 11px;
+  margin-top: 2px;
+  text-transform: capitalize;
+}
+
+.media-status.processing {
+  color: #f59e0b;
+}
+
+.media-status.ready {
+  color: #16a34a;
+}
+
+.media-status.failed {
+  color: #dc2626;
+}
+
+/* ===============================
+   DELETE BUTTON
+================================ */
+
+.media-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.media-delete:hover {
+  background: #dc2626;
+}
+
+/* ===============================
+   EMPTY / LOADING
+================================ */
+
+.media-empty {
+  text-align: center;
+  color: #64748b;
+  padding: 40px 10px;
+}
+
+.media-empty .muted {
+  font-size: 12px;
+}
+
+/* ===============================
+   UPLOAD PROGRESS
+================================ */
+
+.media-uploading {
+  padding: 40px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.2s ease;
+}
+
+.media-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.media-card:hover .media-thumb::after {
+  content: "▶ Preview";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+
+.media-preview-panel {
+  position: fixed;
+  width: 320px;
+  max-height: 60vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  padding: 12px;
+  z-index: 9999;
+
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity .15s ease, transform .15s ease;
+
+  pointer-events: auto;
+}
+
+.media-preview-panel.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.media-preview-panel:not(.hidden) {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.media-preview-panel img,
+.media-preview-panel video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.preview-header {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.preview-body {
+  overflow: hidden;
+}
+
+
+.media-thumb {
+  position: relative;
+  background: #f3f4f6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.media-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Play affordance */
+.media-thumb::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.media-card:hover .media-thumb::after {
+  opacity: 1;
+}
+
+/* ==================================================
+   HEADER LAYOUT FIX (GRID-BASED, ENTERPRISE)
+================================================== */
+
+.media-header {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Title block */
+.media-title {
+  justify-self: start;
+}
+
+.media-title h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* ==================================================
+   BACK BUTTON — CLEAN + SUBTLE
+================================================== */
+
+.back-btn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-btn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* ==================================================
+   DELETE BUTTON — ICON-ONLY, DANGER ON HOVER
+================================================== */
+
+.media-delete {
+  background: transparent !important;
+  border: none !important;
+  color: #9ca3af !important;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.media-delete svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.media-delete:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ==================================================
+   REMOVE RED CIRCLE FEEL COMPLETELY
+================================================== */
+
+.media-delete {
+  box-shadow: none !important;
+}
+
+/* ==================================================
+   MEDIA CARD — CLEAN FLAT LOOK
+================================================== */
+
+.media-card {
+  box-shadow: none !important;
+}
+
+.media-card:hover {
+  box-shadow: none !important;
+  border-color: #2563eb;
+}
+
+/* ==================================================
+   HEADER ACTIONS SPACING
+================================================== */
+
+.media-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===============================
+   BACK BUTTON — VISIBLE + CLEAN
+================================ */
+
+.back-btn {
+  appearance: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.back-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+
+/* ===============================
+   DELETE BUTTON — VISIBLE, NOT AGGRESSIVE
+================================ */
+
+.media-delete {
+  background: #f7f6f6 !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important; /* visible neutral */
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease, border 0.15s ease;
+}
+
+.media-delete svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.media-delete:hover {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+/* ===============================
+   TITLE SPACING FIX
+================================ */
+
+.media-title h2 {
+  line-height: 1.2;
+  margin-left: 4px;
+}
+
+.media-preview-panel {
+  pointer-events: auto;
+}

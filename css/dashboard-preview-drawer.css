@@ -1,0 +1,337 @@
+/* ======================================================
+   DASHBOARD PREVIEW DRAWER — ENTERPRISE GRADE
+   Fully scoped | No global bleed | Wizard parity
+   ====================================================== */
+
+.dashboard-preview-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ======================================================
+   PANEL
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-panel {
+  width: min(420px, 38vw);
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.18);
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-header {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+}
+
+.dashboard-preview-drawer .drawer-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+.dashboard-preview-drawer .drawer-sub {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* ======================================================
+   BODY
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ======================================================
+   WHATSAPP MESSAGE BUBBLE (MATCHES WIZARD)
+   ====================================================== */
+
+.dashboard-preview-drawer .wa-bubble {
+  background: #dcf8c6;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+}
+
+/* ======================================================
+   MEDIA — ALWAYS INSIDE BUBBLE
+   ====================================================== */
+
+.dashboard-preview-drawer .wa-bubble img,
+.dashboard-preview-drawer .wa-bubble video {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #000;
+}
+
+/* Video controls polish */
+.dashboard-preview-drawer .wa-bubble video {
+  display: block;
+}
+
+/* ======================================================
+   TEXT — MATCH ANNOUNCEMENT WIZARD SPACING
+   ====================================================== */
+
+.dashboard-preview-drawer .wa-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #111827;
+  white-space: pre-wrap; /* critical for spacing parity */
+  word-break: break-word;
+}
+
+/* ======================================================
+   TEMPLATE VARIABLES
+   ====================================================== */
+
+.dashboard-preview-drawer .wa-var {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+/* ======================================================
+   AUDIENCE / RECIPIENT INFO
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-audience {
+  padding: 12px 14px;
+  background: #f9fafb;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.dashboard-preview-drawer .drawer-audience-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.dashboard-preview-drawer .drawer-audience-value {
+  color: #111827;
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-footer {
+  padding: 14px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+}
+
+.dashboard-preview-drawer .drawer-footer .btn {
+  flex: 1;
+}
+
+/* ======================================================
+   CLOSE BUTTON
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.dashboard-preview-drawer .drawer-close:hover {
+  color: #111827;
+}
+
+
+/* Prevent phantom spacing inside bubble */
+.dashboard-preview-drawer .wa-bubble {
+  padding: 12px 14px;
+}
+
+/* Kill accidental first-line gap */
+.dashboard-preview-drawer .wa-text:first-child {
+  margin-top: 0;
+}
+
+/* Normalize paragraph rhythm */
+.dashboard-preview-drawer .wa-text p {
+  margin: 0 0 8px;
+}
+
+.dashboard-preview-drawer .wa-text p:last-child {
+  margin-bottom: 0;
+}
+
+
+.dashboard-preview-drawer .wa-media {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.dashboard-preview-drawer .wa-media video,
+.dashboard-preview-drawer .wa-media img {
+  display: block;          /* KILLS top gap */
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+}
+
+
+/* ======================================================
+   DOCUMENT MEDIA — WHATSAPP STYLE (ENTERPRISE)
+   ====================================================== */
+
+.dashboard-preview-drawer .wa-media a.drawer-doc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 14px 16px;
+
+  background: #fbfffb;           /* WhatsApp dark doc card */
+  color: #080808;
+  text-decoration: none;
+
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.dashboard-preview-drawer .wa-media a.drawer-doc:hover {
+  background: #bcc8d9;
+}
+
+.dashboard-preview-drawer .wa-media a.drawer-doc:active {
+  transform: scale(0.98);
+}
+
+/* Document icon */
+.dashboard-preview-drawer .wa-media a.drawer-doc::before {
+  content: "📄";
+  font-size: 18px;
+  line-height: 1;
+}
+
+
+/* ======================================================
+   FOOTER ACTIONS — ENTERPRISE UX
+   ====================================================== */
+
+.dashboard-preview-drawer .drawer-footer {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Edit */
+.dashboard-preview-drawer .drawer-footer .btn.outline {
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  color: #111827;
+
+  font-weight: 500;
+  border-radius: 10px;
+  height: 44px;
+
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.dashboard-preview-drawer .drawer-footer .btn.outline:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* Delete */
+.dashboard-preview-drawer .drawer-footer .btn.danger {
+  background: #dc2626;
+  border: none;
+  color: #ffffff;
+
+  font-weight: 600;
+  border-radius: 10px;
+  height: 44px;
+
+  transition: background 0.15s ease;
+}
+
+.dashboard-preview-drawer .drawer-footer .btn.danger:hover {
+  background: #b91c1c;
+}
+
+
+/* Prevent footer jumping on short content */
+.dashboard-preview-drawer .drawer-panel {
+  min-height: 100%;
+}
+
+/* Smooth scroll for long previews */
+.dashboard-preview-drawer .drawer-body {
+  scroll-behavior: smooth;
+}
+
+
+/* ===============================
+   Audience tree (Preview Drawer)
+   =============================== */
+
+.dashboard-preview-drawer .drawer-audience-paths {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.dashboard-preview-drawer .audience-path {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.dashboard-preview-drawer .audience-node {
+  line-height: 1.5;
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #111827;
+}

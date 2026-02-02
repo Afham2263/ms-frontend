@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Verify Security Code — MS Education</title>
+
+  <link rel="stylesheet" href="css/auth.css">
+
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      width: 100vw; height: 100vh;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    #starCanvas {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+
+    .auth-container {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 380px;
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #cbd5e1;
+      
+    }
+
+    .muted {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      outline: none;
+      box-sizing: border-box;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .btn.primary {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .footnote {
+      margin-top: 18px;
+      font-size: 0.7rem;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <canvas id="starCanvas"></canvas>
+
+    <div class="auth-container">
+      <h2>Verify Security Code</h2>
+
+      <p class="muted">
+        Enter the 6-digit code from your authenticator app to continue.
+      </p>
+
+      <form id="otpForm">
+        <label>
+          One-Time Password
+          <input
+            type="text"
+            name="otp"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            maxlength="6"
+            required
+          />
+        </label>
+
+        <button type="submit" class="btn primary">
+          Verify & Login
+        </button>
+      </form>
+
+      <p class="footnote">Powered by Clyvo AI</p>
+    </div>
+  </div>
+
+  <script src="js/mock-api.js"></script>
+  <script type="module" src="js/2fa-verify.js"></script>
+
+  <!-- Same star animation as admin login -->
+  <script>
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, stars = [];
+    const COUNT = 600;
+
+    function init() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = Array.from({ length: COUNT }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.5,
+        v: Math.random() * 0.15 + 0.05
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      stars.forEach(s => {
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.y -= s.v;
+        if (s.y < 0) s.y = h;
+      });
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", init);
+    init(); draw();
+  </script>
+</body>
+</html>
