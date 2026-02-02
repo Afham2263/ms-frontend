@@ -737,7 +737,7 @@ if (this.state.step === 4) {
 
   alert("Announcement queued successfully");
   localStorage.removeItem(this.storageKey);
-  location.href = "/dashboard-admin.html";
+  window.location.replace("dashboard-admin.html");
 }
 
 
