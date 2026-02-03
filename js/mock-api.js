@@ -1,5 +1,6 @@
 // PREVIEW MODE API PROXY — ENTERPRISE HARDLOCKED
-//
+//// ⚠ Static-hosting safe: do not use absolute paths
+
 // GOALS (NON-NEGOTIABLE):
 // 1. Proxy ALL relative /api/* calls to ngrok in preview mode
 // 2. INCLUDING multipart uploads (media-assets)
