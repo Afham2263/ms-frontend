@@ -25,7 +25,7 @@
     isLocalDev ||
     localStorage.getItem("ms_preview_mode") === "admin";
 
-  const NGROK_ORIGIN = "https://e8689cd67d55.ngrok-free.app";
+  const NGROK_ORIGIN = "https://b339-2405-201-c023-f11a-ed59-30b1-fb00-46e5.ngrok-free.app";
 
   console.log("[MOCK API] Loaded. Preview mode:", isPreview);
 
